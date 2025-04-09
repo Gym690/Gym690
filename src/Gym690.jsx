@@ -1,8 +1,5 @@
 
 import React, { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 const exercises = [
   {
@@ -17,7 +14,6 @@ const exercises = [
     image: "https://tse2.mm.bing.net/th?id=OIP.Y1MFGvNNfcSk32TXQhJR8wHaE7&pid=Api",
     youtube: "https://www.youtube.com/watch?v=Vg2teM1pZhU"
   }
-  // Add the full list of exercises from JSON here later
 ];
 
 const categories = [
@@ -37,42 +33,44 @@ export default function Gym690() {
   );
 
   return (
-    <div className="min-h-screen bg-black text-pink-500 p-4">
-      <h1 className="text-4xl font-bold text-center mb-6">Gym690</h1>
-      <div className="flex flex-wrap justify-center gap-2 mb-6">
+    <div style={{ backgroundColor: "black", color: "#ff69b4", minHeight: "100vh", padding: "1rem" }}>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold", textAlign: "center", marginBottom: "1.5rem" }}>Gym690</h1>
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.5rem", marginBottom: "1.5rem" }}>
         {categories.map((cat) => (
-          <Button
+          <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={\`rounded-full px-4 py-2 $\{selectedCategory === cat ? "bg-pink-600 text-white" : "bg-gray-800 text-pink-400"\}`}>
+            className={
+              "rounded-full px-4 py-2 " +
+              (selectedCategory === cat
+                ? "bg-pink-600 text-white"
+                : "bg-gray-800 text-pink-400")
+            }
+          >
             {cat}
-          </Button>
+          </button>
         ))}
       </div>
-      <div className="grid gap-4">
+      <div style={{ display: "grid", gap: "1rem" }}>
         {filteredExercises.map((ex, index) => (
-          <Card key={index} className="bg-gray-900 rounded-2xl shadow-lg">
-            <CardContent className="p-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold">{ex.name}</h2>
-                <Badge className="bg-pink-600 text-white capitalize">{ex.category}</Badge>
-              </div>
-              <img
-                src={ex.image}
-                alt={ex.name}
-                className="w-full h-48 object-contain rounded-xl my-4"
-              />
-              <a
-                href={ex.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="w-full bg-pink-600 hover:bg-pink-400 text-white">
-                  Watch on YouTube
-                </Button>
-              </a>
-            </CardContent>
-          </Card>
+          <div key={index} style={{ backgroundColor: "#1f1f1f", borderRadius: "1rem", padding: "1rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h2 style={{ fontSize: "1.25rem", fontWeight: "600" }}>{ex.name}</h2>
+              <span style={{ backgroundColor: "#ff69b4", color: "white", borderRadius: "9999px", padding: "0.25rem 0.75rem" }}>
+                {ex.category}
+              </span>
+            </div>
+            <img
+              src={ex.image}
+              alt={ex.name}
+              style={{ width: "100%", height: "200px", objectFit: "contain", marginTop: "1rem", borderRadius: "0.5rem" }}
+            />
+            <a href={ex.youtube} target="_blank" rel="noopener noreferrer">
+              <button style={{ marginTop: "1rem", width: "100%", backgroundColor: "#ff69b4", color: "white", padding: "0.5rem", borderRadius: "0.5rem" }}>
+                Watch on YouTube
+              </button>
+            </a>
+          </div>
         ))}
       </div>
     </div>
