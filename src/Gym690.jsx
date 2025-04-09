@@ -13,6 +13,24 @@ const exercises = [
     category: "Plate",
     image: "https://tse2.mm.bing.net/th?id=OIP.Y1MFGvNNfcSk32TXQhJR8wHaE7&pid=Api",
     youtube: "https://www.youtube.com/watch?v=Vg2teM1pZhU"
+  },
+  {
+    name: "Russian Twist",
+    category: "Kettlebell",
+    image: "https://www.inspireusafoundation.org/wp-content/uploads/2022/12/russian-twist.gif",
+    youtube: "https://www.youtube.com/watch?v=wkD8rjkodUI"
+  },
+  {
+    name: "Goblet Squat",
+    category: "Kettlebell",
+    image: "https://www.inspireusafoundation.org/wp-content/uploads/2022/11/goblet-squat.gif",
+    youtube: "https://www.youtube.com/watch?v=6xwGFn-J_QA"
+  },
+  {
+    name: "Alt. Snatch",
+    category: "Dumbbell",
+    image: "https://www.inspireusafoundation.org/wp-content/uploads/2022/12/dumbbell-snatch.gif",
+    youtube: "https://www.youtube.com/watch?v=YzZySZ6E_1M"
   }
 ];
 
@@ -26,7 +44,7 @@ const categories = [
 ];
 
 export default function Gym690() {
-  const [selectedCategory, setSelectedCategory] = useState("Barbell");
+  const [selectedCategory, setSelectedCategory] = useState("Dumbbell");
 
   const filteredExercises = exercises.filter(
     (ex) => ex.category.toLowerCase() === selectedCategory.toLowerCase()
@@ -40,18 +58,20 @@ export default function Gym690() {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={
-              "rounded-full px-4 py-2 " +
-              (selectedCategory === cat
-                ? "bg-pink-600 text-white"
-                : "bg-gray-800 text-pink-400")
-            }
+            style={{
+              backgroundColor: selectedCategory === cat ? "#ff69b4" : "#333",
+              color: selectedCategory === cat ? "white" : "#ff69b4",
+              border: "none",
+              borderRadius: "999px",
+              padding: "0.5rem 1rem",
+              cursor: "pointer"
+            }}
           >
             {cat}
           </button>
         ))}
       </div>
-      <div style={{ display: "grid", gap: "1rem" }}>
+      <div style={{ maxHeight: "70vh", overflowY: "auto", display: "grid", gap: "1rem", paddingRight: "0.5rem" }}>
         {filteredExercises.map((ex, index) => (
           <div key={index} style={{ backgroundColor: "#1f1f1f", borderRadius: "1rem", padding: "1rem" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
